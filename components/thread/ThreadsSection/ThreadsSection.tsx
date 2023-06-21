@@ -33,10 +33,13 @@ import { useSession } from "next-auth/react";
 import ThreadCard from "./ThreadCard";
 
 const ThreadsSection = ({ userId }: { userId: string }) => {
+  const [sort, setSort] = React.useState("popular");
+
   const session = useSession();
   const { ref, inView } = useInView();
+
   const { result, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
-    useGetInfiniteThreads(userId);
+    useGetInfiniteThreads({ userId, sort });
 
   React.useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
@@ -54,13 +57,14 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
           Threads
         </Text>
         {!isLoading && (
-          <Tabs variant={"unstyled"}>
+          <Tabs defaultIndex={sort === "popular" ? 0 : 1} variant={"unstyled"}>
             <TabList>
               <Tab
                 _selected={{ color: "blue.200" }}
                 color={"gray.500"}
                 fontSize={"xs"}
                 fontWeight={"bold"}
+                onClick={() => setSort("popular")}
               >
                 Popular
               </Tab>
@@ -69,6 +73,7 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
                 _selected={{ color: "blue.200" }}
                 fontSize={"xs"}
                 fontWeight={"bold"}
+                onClick={() => setSort("new")}
               >
                 New
               </Tab>

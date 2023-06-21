@@ -124,21 +124,24 @@ export const GET = async (
           },
         },
       },
-      /** {
-        createdAt: "desc",
-      } */
-      orderBy: [
-        {
-          likes: {
-            _count: "desc",
-          },
-        },
-        {
-          comments: {
-            _count: "desc",
-          },
-        },
-      ],
+
+      orderBy:
+        sort === "popular"
+          ? [
+              {
+                likes: {
+                  _count: "desc",
+                },
+              },
+              {
+                comments: {
+                  _count: "desc",
+                },
+              },
+            ]
+          : {
+              createdAt: "desc",
+            },
     });
     let nextCursor = undefined;
     if (result.length > parseInt(limit)) {

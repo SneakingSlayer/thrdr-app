@@ -10,7 +10,13 @@ interface Threads {
   nextCursor: string | undefined | null;
 }
 
-const useGetInfiniteThreads = (userId: string) => {
+const useGetInfiniteThreads = ({
+  userId,
+  sort,
+}: {
+  userId: string;
+  sort?: string;
+}) => {
   const {
     fetchNextPage,
     fetchPreviousPage,
@@ -21,10 +27,10 @@ const useGetInfiniteThreads = (userId: string) => {
     isLoading,
     ...result
   } = useInfiniteQuery<Threads, Error>({
-    queryKey: ["threads", userId],
+    queryKey: ["threads", userId, sort],
     queryFn: async ({ pageParam = "" }) => {
       const result = await fetch(
-        `${THREADS_API}/user/${userId}?cursor=${pageParam}&limit=10&sort=popular`,
+        `${THREADS_API}/user/${userId}?cursor=${pageParam}&limit=10&sort=${sort}`,
         {
           method: "GET",
         }
