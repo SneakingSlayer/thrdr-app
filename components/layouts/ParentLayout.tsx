@@ -20,12 +20,11 @@ import {
 import { Poppins } from "next/font/google";
 
 // Components
-import { AuthModal } from "@/components";
-import { GlobalModalContext } from "../modals/GlobalModalProvider";
+import { AuthModal, Navbar } from "@/components";
 
 const poppins = Poppins({
   subsets: ["devanagari"],
-  weight: "400",
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const config = {
@@ -35,30 +34,30 @@ const config = {
 
 const theme = extendTheme(
   {
-    /*  colors: {
+    colors: {
       brand: {
-        50: "#b3c3f3",
-        100: "#a0b4f0",
-        200: "#8da5ed",
-        300: "#7a96ea",
-        400: "#6787e7",
-        500: "#5478e4",
-        600: "#4169e1",
-        700: "#3b5fcb",
-        800: "#3454b4",
-        900: "#2e4a9e",
+        50: "#eef2ff",
+        100: "#e0e7ff",
+        200: "#c7d2fe",
+        300: "#a5b4fc",
+        400: "#818cf8",
+        500: "#6366f1",
+        600: "#4f46e5",
+        700: "#4338ca",
+        800: "#3730a3",
+        900: "#312e81",
       },
-    }, */
+    },
 
     config,
-  }
-  /*  withDefaultColorScheme({ colorScheme: "brand" }),
+  },
+  withDefaultColorScheme({ colorScheme: "brand" }),
   withDefaultProps({
     defaultProps: {
       color: "brand.500",
     },
     components: ["Button"],
-  }) */
+  })
 );
 
 const ParentLayout = ({ children }: { children: React.ReactNode }) => {
@@ -71,7 +70,8 @@ const ParentLayout = ({ children }: { children: React.ReactNode }) => {
             <GlobalModalProvider>
               <CacheProvider>
                 <ChakraProvider theme={theme}>
-                  <Container h={"100%"} paddingTop={"5rem"} maxW={"lg"}>
+                  <Container h={"100%"} paddingTop={"6rem"} maxW={"lg"}>
+                    <Navbar session={null} />
                     {children}
                   </Container>
                   <RootModals />

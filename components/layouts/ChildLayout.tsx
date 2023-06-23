@@ -12,7 +12,7 @@ const ChildLayout = ({
 }) => {
   return (
     <>
-      <Navbar session={session} />
+      {/*  <Navbar session={session} /> */}
       {children}
     </>
   );

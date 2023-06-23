@@ -5,29 +5,24 @@ import React from "react";
 import {
   Box,
   Button,
-  Text,
   Flex,
   Container,
   Avatar,
   ButtonGroup,
-  HStack,
-  Heading,
-  IconButton,
-  Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  useColorModeValue,
   Image,
 } from "@chakra-ui/react";
 
-import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 
-import { RiNotification4Line } from "react-icons/ri";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = ({ session }: { session: any }) => {
+  const router = useRouter();
   return (
     <Flex
       as="nav"
@@ -41,15 +36,19 @@ const Navbar = ({ session }: { session: any }) => {
     >
       <Container maxW={"lg"}>
         <Box>
-          <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-            <Box>
+          <Flex
+            paddingY={4}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Link href={"/"}>
               <Image
-                w={"90px"}
+                w={"35px"}
                 h={"100%"}
-                src="/thrdr-logo-full.svg"
+                src="/thrdr-icon.svg"
                 alt="thrdr-logo"
               />
-            </Box>
+            </Link>
             <ButtonGroup spacing={2}>
               {session ? (
                 <Menu placement="bottom-end">
@@ -77,9 +76,25 @@ const Navbar = ({ session }: { session: any }) => {
                   </MenuList>
                 </Menu>
               ) : (
-                <Button size={"xs"} onClick={() => signIn()}>
-                  Sign in
-                </Button>
+                <>
+                  <Button
+                    colorScheme="white"
+                    size={"xs"}
+                    variant={"outline"}
+                    onClick={() => signIn()}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    bg={"brand.600"}
+                    color={"white"}
+                    size={"xs"}
+                    variant={"solid"}
+                    onClick={() => router.push("/signup")}
+                  >
+                    Sign up
+                  </Button>
+                </>
               )}
             </ButtonGroup>
           </Flex>
