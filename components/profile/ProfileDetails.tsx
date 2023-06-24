@@ -28,7 +28,10 @@ const ProfileDetails = (props: User) => {
             name={data.name}
             mb={3}
           />
-          <Text color={"brand.400"} fontSize={"xs"} fontWeight={"bold"}>
+          <Text fontWeight={"bold"} fontSize={"sm"} color={"brand.400"}>
+            {data.name}
+          </Text>
+          <Text color={"gray.500"} fontSize={"xs"} fontWeight={"bold"}>
             @{data.userName}
           </Text>
         </Flex>
