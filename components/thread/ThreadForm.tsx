@@ -92,10 +92,9 @@ const ThreadForm = ({ name, userId }: ThreadFormProps) => {
               },
               required: "Must be atleast 10 characters",
             })}
-            variant={"filled"}
             placeholder={`Say something to ${name}...`}
             rows={3}
-            fontSize={"sm"}
+            variant={"filled"}
           />
           <FormErrorMessage>
             {errors?.description && errors?.description?.message?.toString()}
@@ -103,9 +102,9 @@ const ThreadForm = ({ name, userId }: ThreadFormProps) => {
         </FormControl>
         <Flex justifyContent={"space-between"} w={"100%"} alignItems={"center"}>
           <HStack>
-            <Switch />
+            {/*  <Switch /> */}
             <Text fontSize={"xs"} color={"gray.600"}>
-              Anonymous?
+              Anonymous feature coming soon!
             </Text>
           </HStack>
 

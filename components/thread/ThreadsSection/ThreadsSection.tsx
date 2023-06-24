@@ -66,36 +66,39 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
         <Text as="h1" fontWeight={"bold"}>
           Threads
         </Text>
-        {!isLoading && (
-          <Tabs defaultIndex={sort === "popular" ? 0 : 1} variant={"unstyled"}>
-            <TabList>
-              <Tab
-                _selected={{ color: "blue.200" }}
-                color={"gray.500"}
-                fontSize={"xs"}
-                fontWeight={"bold"}
-                onClick={() => setSort("popular")}
-              >
-                Popular
-              </Tab>
-              <Tab
-                color={"gray.500"}
-                _selected={{ color: "blue.200" }}
-                fontSize={"xs"}
-                fontWeight={"bold"}
-                onClick={() => setSort("new")}
-              >
-                New
-              </Tab>
-            </TabList>
-            <TabIndicator
-              mt="-1.5px"
-              height="2px"
-              bg="blue.300"
-              borderRadius="1px"
-            />
-          </Tabs>
-        )}
+        <Tabs
+          position={"relative"}
+          defaultIndex={sort === "popular" ? 0 : 1}
+          variant={"unstyled"}
+        >
+          <TabList>
+            <Tab
+              _selected={{ color: "brand.400" }}
+              color={"gray.500"}
+              fontSize={"xs"}
+              fontWeight={"bold"}
+              onClick={() => setSort("popular")}
+            >
+              Popular
+            </Tab>
+            <Tab
+              color={"gray.500"}
+              _selected={{ color: "brand.400" }}
+              fontSize={"xs"}
+              fontWeight={"bold"}
+              onClick={() => setSort("new")}
+            >
+              New
+            </Tab>
+          </TabList>
+          <TabIndicator
+            mt="-1.5px"
+            height="2px"
+            bg="brand.400"
+            borderRadius="1px"
+            position={"absolute"}
+          />
+        </Tabs>
       </Flex>
       {isLoading && (
         <Flex justifyContent={"center"} py={5}>

@@ -54,7 +54,7 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
               <Text
                 _hover={{ textDecoration: "underline" }}
                 fontSize={"xs"}
-                color={"Highlight"}
+                color={"brand.200"}
                 fontWeight={"700"}
               >
                 {thread.createdBy.userName}
@@ -87,7 +87,7 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
               leftIcon={<AiOutlineHeart />}
               size={"xs"}
               disabled={hasLiked}
-              colorScheme={hasLiked ? "blue" : "gray"}
+              bg={hasLiked ? "brand.500" : "whiteAlpha.200"}
             >
               {thread._count.likes} Likes
             </Button>
