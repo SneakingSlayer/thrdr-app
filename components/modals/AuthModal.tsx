@@ -12,20 +12,37 @@ import {
   ModalFooter,
   Text,
   Image,
+  Flex,
 } from "@chakra-ui/react";
 
+import { useRouter } from "next/navigation";
+
 import { useModalState } from "@/hooks";
+import Link from "next/link";
 
 const AuthModal = () => {
+  const router = useRouter();
   const { isOpen, setModalId } = useModalState();
+  const handleNavigate = React.useCallback(
+    (path: string) => {
+      router.push(path);
+      setModalId("");
+    },
+    [router, setModalId]
+  );
   return (
     <>
       <Modal isOpen={isOpen("AUTH_GUARD_MODAL")} onClose={() => setModalId("")}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader></ModalHeader>
+        <ModalContent
+          py={5}
+          background={"rgba(45, 55, 72, .5)"}
+          backdropFilter={"auto"}
+          backdropBlur={"8px"}
+          mx={3}
+        >
           <ModalCloseButton />
-          <ModalBody pb={6}>
+          <ModalBody>
             <VStack>
               <Image
                 w={"180px"}
@@ -39,26 +56,43 @@ const AuthModal = () => {
                 color={"gray.300"}
                 maxW={"xs"}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas eu massa feugiat.
-              </Text>
-              <Button w={"100%"} borderRadius={"full"} fontSize={"sm"}>
-                Sign up
-              </Button>
-              <Text fontSize={"xs"} color={"gray.400"}>
-                Already have an account?{" "}
-                <Text as={"span"} color={"Highlight"} fontWeight={"bold"}>
-                  Sign in
-                </Text>
+                {
+                  "Ooppss... it seems that you're not yet logged in. Please try again."
+                }
               </Text>
             </VStack>
           </ModalBody>
 
           <ModalFooter>
-            {/*  <Button colorScheme="blue" mr={3}>
-      Save
-    </Button>
-    <Button>Cancel</Button> */}
+            <Flex
+              flexDirection={"column"}
+              w={"100%"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Button
+                w={"40%"}
+                mb={3}
+                bg={"brand.500"}
+                borderRadius={"full"}
+                size="sm"
+                onClick={() => handleNavigate("/signup")}
+              >
+                Sign up
+              </Button>
+              <Text fontSize={"xs"} color={"gray.500"}>
+                Already have an account?{" "}
+                <Button
+                  variant={"unstyled"}
+                  size={"xs"}
+                  onClick={() => handleNavigate("/signin")}
+                >
+                  <Text as={"span"} color={"brand.500"} fontWeight={"bold"}>
+                    Sign in
+                  </Text>
+                </Button>
+              </Text>
+            </Flex>
           </ModalFooter>
         </ModalContent>
       </Modal>
