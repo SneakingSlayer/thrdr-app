@@ -24,9 +24,11 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Session } from "next-auth";
 
-const Navbar = ({ session }: { session: Session }) => {
+import { useGetProfilePic } from "@/hooks";
+
+const Navbar = ({ session }: { session: Session | null }) => {
   const router = useRouter();
-  console.log("NAVBAR", session);
+  const { getImageUri } = useGetProfilePic({});
   return (
     <Flex
       as="nav"
@@ -69,10 +71,11 @@ const Navbar = ({ session }: { session: Session }) => {
                     <HStack>
                       <Avatar
                         name={session?.user?.name}
-                        src={session?.user?.image}
+                        src={getImageUri(session?.user?.userName ?? "")}
                         borderWidth={2}
                         borderColor={"gray.700"}
                         size={"sm"}
+                        bg={"brand.200"}
                       />
                       <Box textAlign={"left"}>
                         <Text>{session?.user?.name}</Text>

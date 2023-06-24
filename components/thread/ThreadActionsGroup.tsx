@@ -25,7 +25,11 @@ import type { Comments, Likes } from "@/types";
 
 import { SubmitButton } from "@/components";
 
-import { useLikeThreadMutation, useModalState } from "@/hooks";
+import {
+  useGetProfilePic,
+  useLikeThreadMutation,
+  useModalState,
+} from "@/hooks";
 
 const ThreadActionsGroup = ({
   likes,
@@ -77,6 +81,8 @@ const ThreadActionsGroup = ({
     hasLiked,
   });
 
+  const { getImageUri } = useGetProfilePic({});
+
   return (
     <>
       <Box mb={5} backgroundColor={"gray.700"} px={3} borderRadius={7}>
@@ -105,10 +111,11 @@ const ThreadActionsGroup = ({
               {comments?.map((comment, i) => (
                 <Avatar
                   key={i}
-                  borderColor={"whiteAlpha.400"}
+                  borderColor={"gray.700"}
                   size={"sm"}
+                  bg={"brand.200"}
                   name={comment?.createdBy?.name}
-                  src={comment?.createdBy?.image ?? ""}
+                  src={getImageUri(comment?.createdBy?.userName)}
                 />
               ))}
             </AvatarGroup>

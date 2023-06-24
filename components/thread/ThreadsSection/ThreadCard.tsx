@@ -22,7 +22,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { useLikeThreadMutation } from "@/hooks";
+import { useLikeThreadMutation, useGetProfilePic } from "@/hooks";
 
 import type { Thread } from "@/types";
 
@@ -37,13 +37,16 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
     forSingleThread: false,
   });
 
+  const { getImageUri } = useGetProfilePic({});
+
   return (
     <Card w={"100%"}>
       <CardHeader pb={0}>
         <HStack>
           <Avatar
+            bg={"brand.200"}
             name={thread.createdBy.name}
-            src={thread.createdBy.image}
+            src={getImageUri(thread.createdBy.userName)}
             size={"sm"}
           />
           <Box>
@@ -102,9 +105,10 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
               <AvatarGroup size={"xs"} fontSize={"xs"} spacing={-2}>
                 {thread?.comments?.map((el, i) => (
                   <Avatar
+                    bg={"brand.200"}
                     key={i}
                     name={el.createdBy.name}
-                    src={el.createdBy.image}
+                    src={getImageUri(el?.createdBy?.userName)}
                     borderColor={"gray.700"}
                     borderWidth={1}
                   />

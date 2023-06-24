@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import { getThreadById } from "@/queries";
 
 import Link from "next/link";
+import { useGetProfilePic } from "@/hooks";
 
 const ThreadDetails = (props: { data: Thread }) => {
   const session = useSession();
@@ -23,12 +24,15 @@ const ThreadDetails = (props: { data: Thread }) => {
     enabled: !props?.data,
   });
 
+  const { getImageUri } = useGetProfilePic({});
+
   return (
     <Box>
       <HStack mb={3}>
         <Avatar
+          bg={"brand.200"}
           size={"sm"}
-          src={data?.data?.createdBy?.image}
+          src={getImageUri(data?.data?.createdBy?.userName)}
           name={data?.data?.createdBy?.name}
         />
         <Box>

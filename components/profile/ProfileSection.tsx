@@ -6,6 +6,7 @@ import { Avatar, Text, Flex, VStack, HStack } from "@chakra-ui/react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getUserById } from "@/queries";
 import { User } from "@/types";
+import { useGetProfilePic } from "@/hooks";
 
 const ProfileSection = (props: User) => {
   const { data } = useQuery({
@@ -15,11 +16,18 @@ const ProfileSection = (props: User) => {
     enabled: !props,
   });
 
+  const { getImageUri } = useGetProfilePic({});
+
   return (
     <Flex mb={5} w={"100%"} justifyContent={"center"} alignItems={"center"}>
       <VStack spacing={3}>
         <Flex flexDirection={"column"} alignItems={"center"}>
-          <Avatar src={data.image} name={data.name} mb={3} />
+          <Avatar
+            bg={"brand.200"}
+            src={getImageUri(data?.userName)}
+            name={data.name}
+            mb={3}
+          />
           <Text color={"brand.400"} fontSize={"xs"} fontWeight={"bold"}>
             @{data.userName}
           </Text>
