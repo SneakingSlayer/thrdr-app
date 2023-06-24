@@ -30,8 +30,8 @@ const LoginForm = () => {
   const onSubmit = async (values: any) => {
     setIsSubmitting(true);
     await signIn("credentials", {
-      userName: "123123",
-      password: "123123",
+      userName: values.userName,
+      password: values.password,
       callbackUrl,
     });
     setIsSubmitting(false);
