@@ -1,4 +1,4 @@
-import { ProfileSection, ThreadForm, ThreadsSection } from "@/components";
+import { ProfileDetails, ThreadForm, ThreadsSection } from "@/components";
 import { getUserById } from "@/queries";
 
 export default async function Home(params: { params: { id: string } }) {
@@ -6,7 +6,7 @@ export default async function Home(params: { params: { id: string } }) {
   if (!user) return <h1>ERROR 404</h1>;
   return (
     <>
-      <ProfileSection {...user} />
+      <ProfileDetails {...user} />
       <ThreadForm userId={params.params.id} name={user?.name ?? ""} />
       <ThreadsSection userId={params.params.id} />
     </>

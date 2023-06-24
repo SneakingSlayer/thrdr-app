@@ -92,9 +92,7 @@ const ThreadForm = ({ name, userId }: ThreadFormProps) => {
               },
               required: "Must be atleast 10 characters",
             })}
-            borderWidth={0}
-            bg={"gray.900"}
-            // focusBorderColor="brand.500"
+            variant={"filled"}
             placeholder={`Say something to ${name}...`}
             rows={3}
             fontSize={"sm"}

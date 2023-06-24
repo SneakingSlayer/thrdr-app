@@ -47,7 +47,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Link href={"/"}>
+            <Link href={session ? `/${session?.user?.userName}` : "/"}>
               <Image
                 w={"35px"}
                 h={"100%"}
@@ -90,7 +90,13 @@ const Navbar = ({ session }: { session: Session | null }) => {
                     fontSize={"sm"}
                     alignItems={"center"}
                   >
-                    <MenuItem>Profile</MenuItem>
+                    <MenuItem
+                      onClick={() =>
+                        router.push(`/me/${session?.user?.userName}`)
+                      }
+                    >
+                      Profile
+                    </MenuItem>
                     <MenuItem onClick={() => signOut()}>Logout</MenuItem>
                   </MenuList>
                 </Menu>

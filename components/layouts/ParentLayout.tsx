@@ -51,8 +51,32 @@ const theme = extendTheme({
   },
   components: {
     Textarea: {
+      filled: {
+        field: {
+          _focus: {
+            borderColor: "brand.500",
+            borderWidth: 1,
+          },
+          borderRadius: "md",
+          fontSize: "sm",
+        },
+      },
+    },
+    Input: {
       defaultProps: {
-        focusBorderColor: "brand.500",
+        background: "blue",
+      },
+      variants: {
+        filled: {
+          field: {
+            _focus: {
+              borderColor: "brand.500",
+              borderWidth: 1,
+            },
+            borderRadius: "md",
+            fontSize: "sm",
+          },
+        },
       },
     },
   },

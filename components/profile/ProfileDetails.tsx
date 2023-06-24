@@ -8,7 +8,7 @@ import { getUserById } from "@/queries";
 import { User } from "@/types";
 import { useGetProfilePic } from "@/hooks";
 
-const ProfileSection = (props: User) => {
+const ProfileDetails = (props: User) => {
   const { data } = useQuery({
     queryKey: ["profile", props?.userName],
     initialData: props,
@@ -72,4 +72,4 @@ const ProfileSection = (props: User) => {
   );
 };
 
-export default ProfileSection;
+export default ProfileDetails;
