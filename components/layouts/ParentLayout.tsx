@@ -3,25 +3,20 @@
 import React from "react";
 
 // Providers
-import { ChakraProvider, Spinner, extendTheme } from "@chakra-ui/react";
+import { Box, ChakraProvider, Spinner, extendTheme } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GlobalModalProvider } from "@/components";
 
 // Chakra UI
-import {
-  Container,
-  withDefaultColorScheme,
-  withDefaultProps,
-  defineStyleConfig,
-} from "@chakra-ui/react";
+import { Container, IconButton } from "@chakra-ui/react";
 
 // Google fonts
 import { Poppins } from "next/font/google";
 
 // Components
-import { AuthModal, Navbar } from "@/components";
+import { AuthModal, Navbar, ScrollToTop } from "@/components";
 import { Session } from "next-auth";
 
 const poppins = Poppins({
@@ -95,6 +90,7 @@ const ParentLayout = ({
               <CacheProvider>
                 <ChakraProvider theme={theme}>
                   <Container h={"100%"} paddingTop={"6rem"} maxW={"lg"}>
+                    <ScrollToTop />
                     <Navbar session={session} />
                     {children}
                   </Container>
