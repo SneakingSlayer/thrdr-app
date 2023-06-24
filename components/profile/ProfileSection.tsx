@@ -20,7 +20,7 @@ const ProfileSection = (props: User) => {
       <VStack spacing={3}>
         <Flex flexDirection={"column"} alignItems={"center"}>
           <Avatar src={data.image} name={data.name} mb={3} />
-          <Text color={"Highlight"} fontSize={"xs"} fontWeight={"bold"}>
+          <Text color={"brand.400"} fontSize={"xs"} fontWeight={"bold"}>
             @{data.userName}
           </Text>
         </Flex>

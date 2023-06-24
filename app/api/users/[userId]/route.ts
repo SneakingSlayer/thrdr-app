@@ -19,7 +19,6 @@ export const GET = async (
         },
       },
     });
-    console.log("api", getUser);
     return NextResponse.json({ data: getUser });
   } catch (error) {
     return error;

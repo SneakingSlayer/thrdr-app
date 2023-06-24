@@ -25,9 +25,10 @@ const useGetInfiniteThreads = ({
     isFetchingNextPage,
     isFetchingPreviousPage,
     isLoading,
+    refetch,
     ...result
   } = useInfiniteQuery<Threads, Error>({
-    queryKey: ["threads", userId, sort],
+    queryKey: ["threads", userId],
     queryFn: async ({ pageParam = "" }) => {
       const result = await fetch(
         `${THREADS_API}/user/${userId}?cursor=${pageParam}&limit=10&sort=${sort}`,
@@ -48,6 +49,7 @@ const useGetInfiniteThreads = ({
     isFetchingPreviousPage,
     isLoading,
     result,
+    refetch,
   };
 };
 

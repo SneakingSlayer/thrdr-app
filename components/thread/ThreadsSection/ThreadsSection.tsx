@@ -38,8 +38,18 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
   const session = useSession();
   const { ref, inView } = useInView();
 
-  const { result, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage } =
-    useGetInfiniteThreads({ userId, sort });
+  const {
+    result,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+    isFetchingNextPage,
+    refetch,
+  } = useGetInfiniteThreads({ userId, sort });
+
+  React.useEffect(() => {
+    refetch();
+  }, [sort, refetch]);
 
   React.useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();

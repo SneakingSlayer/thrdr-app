@@ -14,15 +14,19 @@ import {
   MenuItem,
   MenuList,
   Image,
+  Text,
+  HStack,
 } from "@chakra-ui/react";
 
 import { signIn, signOut } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Session } from "next-auth";
 
-const Navbar = ({ session }: { session: any }) => {
+const Navbar = ({ session }: { session: Session }) => {
   const router = useRouter();
+  console.log("NAVBAR", session);
   return (
     <Flex
       as="nav"
@@ -57,14 +61,26 @@ const Navbar = ({ session }: { session: any }) => {
                     size={"xs"}
                     p={0}
                     borderRadius={"full"}
+                    bg={"transparent"}
+                    _hover={{ bg: "transparent", opacity: 0.7 }}
+                    _focus={{ bg: "transparent" }}
+                    _active={{ bg: "transparent" }}
                   >
-                    <Avatar
-                      name={session?.user?.name}
-                      src={session?.user?.image}
-                      borderWidth={2}
-                      borderColor={"gray.500"}
-                      size={"xs"}
-                    />
+                    <HStack>
+                      <Avatar
+                        name={session?.user?.name}
+                        src={session?.user?.image}
+                        borderWidth={2}
+                        borderColor={"gray.700"}
+                        size={"sm"}
+                      />
+                      <Box textAlign={"left"}>
+                        <Text>{session?.user?.name}</Text>
+                        <Text color={"gray.500"}>
+                          @{session?.user?.userName}
+                        </Text>
+                      </Box>
+                    </HStack>
                   </MenuButton>
                   <MenuList
                     minW={"120px"}

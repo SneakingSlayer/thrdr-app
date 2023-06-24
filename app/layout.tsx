@@ -1,7 +1,9 @@
+import { getServerSession } from "next-auth";
 import "./globals.css";
 
 // Components
 import { ParentLayout } from "@/components";
+import { authOptions } from "@/lib/auth";
 
 export const metadata = {
   title: "thrdr.",
@@ -13,5 +15,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <ParentLayout>{children}</ParentLayout>;
+  const session = await getServerSession(authOptions);
+  return <ParentLayout session={session}>{children}</ParentLayout>;
 }

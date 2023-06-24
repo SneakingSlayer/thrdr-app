@@ -64,7 +64,7 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
         </HStack>
       </CardHeader>
       <CardBody py={3}>
-        <Text fontSize={"sm"}>{thread.description}</Text>
+        <Text>{thread.description}</Text>
       </CardBody>
       <CardFooter pt={0}>
         <Stack

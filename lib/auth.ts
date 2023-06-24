@@ -33,11 +33,11 @@ export const authOptions: NextAuthOptions = {
             userName: req?.body?.userName,
           },
         });
-
         const isValidPass = await bcrypt.compare(
           req?.body?.password,
           user?.password ?? ""
         );
+
         if (isValidPass && user) {
           return user;
         } else {
@@ -51,16 +51,31 @@ export const authOptions: NextAuthOptions = {
     }), */
   ],
   callbacks: {
-    jwt: async ({ token, user }) => {
-      return token;
-    },
-    session: ({ session, token, user }) => {
+    session: async ({ session, token }) => {
       return {
         ...session,
         user: {
           ...session.user,
           id: token.id ? token.id : token.sub,
+          userName: token?.userName ?? null,
+          email: token?.email ?? null,
+          image: token?.picture ?? null,
         },
+      };
+    },
+    jwt: async ({ token }) => {
+      const user = await prisma.user.findUnique({
+        where: {
+          id: token?.sub,
+        },
+      });
+      if (!user) return token;
+      return {
+        ...token,
+        id: user.id,
+        userName: user.userName,
+        email: user.email,
+        image: user.image,
       };
     },
   },

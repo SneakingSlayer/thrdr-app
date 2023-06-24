@@ -11,7 +11,13 @@ interface SubmitProps {
 
 const SubmitButton = ({ title, isSubmitting, size = "sm" }: SubmitProps) => {
   return (
-    <Button type="submit" size={size}>
+    <Button
+      _hover={{ bg: "brand.600" }}
+      bg={"brand.500"}
+      color={"white"}
+      type="submit"
+      size={size}
+    >
       {isSubmitting ? <Spinner size={size} /> : title}
     </Button>
   );
