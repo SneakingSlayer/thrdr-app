@@ -9,6 +9,8 @@ import CommentCard from "./CommentCard";
 import type { Comments } from "@/types";
 import { useInView } from "react-intersection-observer";
 
+import { EmptyList } from "@/components";
+
 import { useGetInfiniteComments } from "@/hooks";
 
 const CommentsSection = ({ threadId }: { threadId: string }) => {
@@ -20,6 +22,14 @@ const CommentsSection = ({ threadId }: { threadId: string }) => {
   React.useEffect(() => {
     if (inView && hasNextPage) fetchNextPage();
   }, [fetchNextPage, hasNextPage, inView]);
+
+  const allCommentsLength = React.useMemo(
+    () =>
+      data?.pages
+        ?.map((page) => page.data)
+        ?.reduce((prev, curr) => prev.concat(curr))?.length ?? 0,
+    [data?.pages]
+  );
 
   return (
     <Box>
@@ -35,6 +45,11 @@ const CommentsSection = ({ threadId }: { threadId: string }) => {
               <CommentCard key={i} comment={comment} />
             ))
           )}
+        {!isLoading && allCommentsLength < 1 && (
+          <Flex justifyContent={"center"} alignItems={"center"} py={10}>
+            <EmptyList />
+          </Flex>
+        )}
         <Box ref={ref} />
       </Stack>
       {isFetchingNextPage && (

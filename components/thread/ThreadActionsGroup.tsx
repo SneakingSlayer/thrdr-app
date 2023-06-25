@@ -8,7 +8,7 @@ import {
   Avatar,
   VStack,
   Textarea,
-  Text,
+  Spinner,
   Box,
 } from "@chakra-ui/react";
 
@@ -76,7 +76,7 @@ const ThreadActionsGroup = ({
     reset();
   };
 
-  const { mutate: likeMutation } = useLikeThreadMutation({
+  const { mutate: likeMutation, isLoading: isLiking } = useLikeThreadMutation({
     forSingleThread: true,
     hasLiked,
   });
@@ -105,6 +105,7 @@ const ThreadActionsGroup = ({
             <Button leftIcon={<BiComment />} size={"xs"}>
               {comments?.length ?? 0} Reply
             </Button>
+            {isLiking && <Spinner size={"xs"} />}
           </HStack>
           <HStack>
             <AvatarGroup spacing={-2.5} fontSize={"xs"} size={"xs"}>

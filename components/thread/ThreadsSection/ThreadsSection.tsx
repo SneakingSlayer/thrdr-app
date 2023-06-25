@@ -4,18 +4,8 @@ import React, { useContext } from "react";
 
 import {
   Box,
-  Button,
   Flex,
-  FormControl,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
+  Icon,
   Spinner,
   Tab,
   TabIndicator,
@@ -31,6 +21,8 @@ import { useGetInfiniteThreads, useModalState } from "@/hooks";
 
 import { useSession } from "next-auth/react";
 import ThreadCard from "./ThreadCard";
+
+import { EmptyList } from "@/components";
 
 const ThreadsSection = ({ userId }: { userId: string }) => {
   const [sort, setSort] = React.useState("popular");
@@ -55,6 +47,13 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
     if (inView && hasNextPage) fetchNextPage();
   }, [fetchNextPage, hasNextPage, inView]);
 
+  const allThreadsLength = React.useMemo(
+    () =>
+      result?.data?.pages
+        ?.map((page) => page.data)
+        ?.reduce((prev, curr) => prev.concat(curr))?.length ?? 0,
+    [result?.data?.pages]
+  );
   return (
     <Box>
       <Flex
@@ -115,6 +114,7 @@ const ThreadsSection = ({ userId }: { userId: string }) => {
             />
           ))
         )}
+        {!isLoading && allThreadsLength < 1 && <EmptyList />}
         <Box ref={ref} />
       </VStack>
       {isFetchingNextPage && (
