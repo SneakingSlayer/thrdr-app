@@ -65,8 +65,8 @@ export const GET = async (
   { params }: { params: { userId: string; cursor: string } }
 ) => {
   try {
-    // const token = await getToken({ req, secret: TOKEN_SECRET });
     const { token } = await verifyToken(req);
+    console.log(token);
     const cursor = (req.nextUrl.searchParams.get("cursor") ?? 1) as string;
     const limit = (req.nextUrl.searchParams.get("limit") ?? 10) as string;
     const sort = (req.nextUrl.searchParams.get("sort") ?? "popular") as string;
@@ -106,7 +106,6 @@ export const GET = async (
           },
         },
         likes: {
-          take: 1,
           where: {
             userId: token?.sub ?? token?.id ?? "",
           },

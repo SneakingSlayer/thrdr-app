@@ -52,9 +52,7 @@ const ThreadDetails = (props: { data: Thread }) => {
           </Text>
         </Box>
       </HStack>
-      <Text mb={5} fontSize={"sm"}>
-        {data?.data?.description}
-      </Text>
+      <Text mb={5}>{data?.data?.description}</Text>
       <ThreadActionsGroup
         threadId={data?.data?.id}
         userId={session?.data?.user?.id ?? ""}

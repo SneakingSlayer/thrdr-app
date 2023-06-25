@@ -19,7 +19,7 @@ import {
 import { BiComment } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { useLikeThreadMutation, useGetProfilePic } from "@/hooks";
@@ -30,10 +30,11 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
   const router = useRouter();
   const userLikesId = thread?.likes?.map((like) => like.userId) ?? [];
   const hasLiked = userLikesId.includes(userId);
+  const params = useParams();
 
   const { mutate, isLoading } = useLikeThreadMutation({
     hasLiked,
-    createdFor: thread.createdFor.userName,
+    createdFor: params?.id,
     forSingleThread: false,
   });
 

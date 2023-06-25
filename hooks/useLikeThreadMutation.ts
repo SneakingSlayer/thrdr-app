@@ -26,6 +26,7 @@ const useLikeThreadMutation = ({
     if (!session?.data) return setModalId("AUTH_GUARD_MODAL");
     return hasLiked ? await deleteLike(params) : await createLike(params);
   };
+
   const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation({
     mutationFn: handleMutation,
@@ -37,6 +38,8 @@ const useLikeThreadMutation = ({
       await queryClient.cancelQueries(["threads", createdFor]);
       const prevData: InfiniteThreadData | undefined =
         await queryClient.getQueryData(["threads", createdFor]);
+      console.log(prevData);
+      console.log(newLike);
       const updatedPages = prevData?.pages?.map((page) => ({
         ...page,
         data: page.data.map((thread: Thread) => {

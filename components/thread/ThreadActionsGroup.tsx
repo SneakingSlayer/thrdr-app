@@ -90,7 +90,7 @@ const ThreadActionsGroup = ({
           <HStack py={3}>
             <Button
               disabled={hasLiked}
-              colorScheme={hasLiked ? "blue" : "gray"}
+              bg={hasLiked ? "brand.500" : "whiteAlpha.200"}
               leftIcon={<AiOutlineHeart />}
               size={"xs"}
               onClick={async () =>
@@ -126,10 +126,8 @@ const ThreadActionsGroup = ({
         <VStack alignItems={"end"}>
           <Textarea
             {...register("comment", { required: "Required" })}
-            border={0}
-            backgroundColor={"gray.900"}
             placeholder="Write a reply..."
-            fontSize={"sm"}
+            variant={"filled"}
           />
           <SubmitButton title="Post" isSubmitting={isLoading} />
         </VStack>
