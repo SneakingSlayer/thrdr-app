@@ -90,13 +90,9 @@ const Navbar = ({ session }: { session: Session | null }) => {
                     fontSize={"sm"}
                     alignItems={"center"}
                   >
-                    <MenuItem
-                      onClick={() =>
-                        router.push(`/me/${session?.user?.userName}`)
-                      }
-                    >
-                      Profile
-                    </MenuItem>
+                    <Link href={`/me/${session?.user?.userName}`}>
+                      <MenuItem>Profile</MenuItem>
+                    </Link>
                     <MenuItem onClick={() => signOut()}>Logout</MenuItem>
                   </MenuList>
                 </Menu>

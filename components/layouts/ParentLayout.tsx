@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 // Providers
 import { Box, ChakraProvider, Spinner, extendTheme } from "@chakra-ui/react";
 import { CacheProvider } from "@chakra-ui/next-js";
 import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { GlobalModalProvider } from "@/components";
 
 // Chakra UI
 import { Container, IconButton } from "@chakra-ui/react";
@@ -16,8 +15,15 @@ import { Container, IconButton } from "@chakra-ui/react";
 import { Poppins } from "next/font/google";
 
 // Components
-import { AuthModal, Navbar, ScrollToTop } from "@/components";
+import {
+  AuthModal,
+  Navbar,
+  ScrollToTop,
+  GlobalModalProvider,
+} from "@/components";
 import { Session } from "next-auth";
+
+import NextTopLoader from "nextjs-toploader";
 
 const poppins = Poppins({
   subsets: ["devanagari"],
@@ -84,6 +90,17 @@ const ParentLayout = ({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <NextTopLoader
+          color="#7c3aed"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+        />
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
             <GlobalModalProvider>

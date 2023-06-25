@@ -92,13 +92,11 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
             >
               {thread._count.likes} Likes
             </Button>
-            <Button
-              leftIcon={<BiComment />}
-              onClick={() => router.push(`/thread/${thread.id}`)}
-              size={"xs"}
-            >
-              {thread._count.comments} Replies
-            </Button>
+            <Link href={`/thread/${thread.id}`}>
+              <Button leftIcon={<BiComment />} size={"xs"}>
+                {thread._count.comments} Replies
+              </Button>
+            </Link>
             {isLoading && <Spinner size={"xs"} />}
           </HStack>
           {thread.comments?.length > 0 ? (
