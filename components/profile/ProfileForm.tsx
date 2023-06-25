@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 
 const ProfileForm = (props: User) => {
   const { name, email, userName } = props;
-  console.log(props);
+
   const { register } = useForm({
     defaultValues: {
       name,

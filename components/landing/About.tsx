@@ -57,7 +57,7 @@ const About = () => {
       </Box>
       <SimpleGrid gap={7} w={"100%"} columns={{ base: 1, sm: 2 }}>
         {aboutItems.map((item, i) => (
-          <HStack gap={1} alignItems={"base"} key={i}>
+          <HStack gap={2} alignItems={"base"} key={i}>
             <Flex
               justifyContent={"center"}
               alignItems={"center"}

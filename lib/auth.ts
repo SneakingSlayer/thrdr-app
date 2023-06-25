@@ -1,9 +1,4 @@
-import type {
-  Awaitable,
-  NextAuthOptions,
-  RequestInternal,
-  User,
-} from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -11,11 +6,12 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/prisma/utils";
 
 import bcrypt from "bcrypt";
+import { TOKEN_SECRET } from "@/constants";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60 },
-  secret: process.env.TOKEN_SECRET,
+  secret: TOKEN_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
