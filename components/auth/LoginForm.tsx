@@ -25,14 +25,13 @@ const LoginForm = () => {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { register, handleSubmit } = useForm();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/";
 
   const onSubmit = async (values: any) => {
     setIsSubmitting(true);
     await signIn("credentials", {
       userName: values.userName,
       password: values.password,
-      callbackUrl,
+      callbackUrl: `/${values.userName}`,
     });
     setIsSubmitting(false);
   };
