@@ -12,6 +12,11 @@ import {
   Input,
   VStack,
   Text,
+  FormErrorMessage,
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
 } from "@chakra-ui/react";
 
 import { useForm } from "react-hook-form";
@@ -25,19 +30,30 @@ import { redirect } from "next/navigation";
 const LoginForm = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (values: any) => {
+    clearErrors();
     setIsSubmitting(true);
     const result = await signIn("credentials", {
       userName: values.userName,
       password: values.password,
       redirect: false,
     });
-    if (result?.ok) {
+
+    if (!result?.error) {
       window.location.href = `/${values.userName}`;
       /*  router.refresh();
       router.replace(`/${values.userName}`); */
+    } else {
+      setError("userName", { type: "custom", message: "Incorrect username." });
+      setError("password", { type: "custom", message: "Incorrect password." });
     }
     setIsSubmitting(false);
   };
@@ -70,28 +86,42 @@ const LoginForm = () => {
         </Flex>
         <Box w={"100%"} maxW={350} as="form" onSubmit={handleSubmit(onSubmit)}>
           <VStack>
-            <FormControl>
+            {(Boolean(errors?.userName) || Boolean(errors?.password)) && (
+              <Alert borderRadius={"lg"} status="error">
+                <AlertIcon />
+                <AlertDescription fontSize={"xs"}>
+                  Incorrect username or password. Try again.
+                </AlertDescription>
+              </Alert>
+            )}
+            <FormControl isInvalid={Boolean(errors?.userName)}>
               <FormLabel color={"gray.500"} fontSize={"xs"}>
                 Username
               </FormLabel>
               <Input
                 size={"sm"}
-                {...register("userName")}
+                {...register("userName", { required: "Username is required" })}
                 placeholder="Username"
                 variant={"filled"}
               />
+              <FormErrorMessage>
+                {errors?.userName && errors?.userName?.message?.toString()}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
+            <FormControl isInvalid={Boolean(errors?.password)}>
               <FormLabel color={"gray.500"} fontSize={"xs"}>
                 Password
               </FormLabel>
               <Input
                 size={"sm"}
-                {...register("password")}
+                {...register("password", { required: "Password is required" })}
                 placeholder="Password"
                 variant={"filled"}
                 type="password"
               />
+              <FormErrorMessage>
+                {errors?.password && errors?.password?.message?.toString()}
+              </FormErrorMessage>
             </FormControl>
           </VStack>
           <Flex justifyContent={"space-between"} alignItems={"center"} mt={4}>

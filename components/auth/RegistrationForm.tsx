@@ -14,6 +14,9 @@ import {
   FormErrorMessage,
   Image,
   Text,
+  Alert,
+  AlertDescription,
+  AlertIcon,
 } from "@chakra-ui/react";
 
 import { useForm } from "react-hook-form";
@@ -27,11 +30,14 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful, isSubmitted },
+    formState: { errors, isSubmitting },
+    setError,
+    clearErrors,
   } = useForm();
 
   const onSubmit = async (values: any) => {
     try {
+      clearErrors();
       const result = await fetch(SIGN_UP_API, {
         method: "POST",
         body: JSON.stringify(values),
@@ -39,8 +45,12 @@ const RegistrationForm = () => {
           "Content-Type": "application/json",
         },
       });
-    } catch (error) {
-      console.log(error);
+      if (!result.ok) throw await result.json();
+    } catch (error: any) {
+      setError(error?.data?.field, {
+        type: "custom",
+        message: error?.data?.message,
+      });
     }
   };
 
@@ -72,6 +82,14 @@ const RegistrationForm = () => {
         </Flex>
         <Box maxW={350} onSubmit={handleSubmit(onSubmit)} as="form" w={"100%"}>
           <VStack>
+            {Boolean(errors?.userName) && (
+              <Alert borderRadius={"lg"} status="error">
+                <AlertIcon />
+                <AlertDescription fontSize={"xs"}>
+                  {errors?.userName && errors?.userName.message?.toString()}
+                </AlertDescription>
+              </Alert>
+            )}
             <FormControl isInvalid={Boolean(errors.name)}>
               <FormLabel fontSize={"xs"} color={"gray.500"} fontWeight={"bold"}>
                 Name
@@ -129,7 +147,7 @@ const RegistrationForm = () => {
                   required: "Password is required",
                   minLength: {
                     value: 5,
-                    message: "Your username must contain atleast 7 letters.",
+                    message: "Your password must contain atleast 7 letters.",
                   },
                 })}
                 type="password"
