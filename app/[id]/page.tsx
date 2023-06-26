@@ -1,9 +1,10 @@
 import { ProfileDetails, ThreadForm, ThreadsSection } from "@/components";
 import { getUserById } from "@/queries";
+import { redirect } from "next/navigation";
 
 export default async function Home(params: { params: { id: string } }) {
   const user = await getUserById(params.params.id);
-  if (!user) return <h1>ERROR 404</h1>;
+  if (!user) return redirect("/not-found/404");
   return (
     <>
       <ProfileDetails {...user} />
