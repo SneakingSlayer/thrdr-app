@@ -48,6 +48,17 @@ export const POST = async (
             comments: true,
           },
         },
+        likes: {
+          include: {
+            user: true,
+          },
+        },
+        comments: {
+          take: 3,
+          include: {
+            createdBy: true,
+          },
+        },
       },
     });
 

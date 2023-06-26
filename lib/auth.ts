@@ -1,5 +1,4 @@
 import type { NextAuthOptions } from "next-auth";
-import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
@@ -41,10 +40,6 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
-    /*  FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID ?? "",
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET ?? "",
-    }), */
   ],
   callbacks: {
     session: async ({ session, token }) => {

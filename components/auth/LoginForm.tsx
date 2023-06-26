@@ -17,22 +17,28 @@ import {
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { redirect } from "next/navigation";
 import { SubmitButton } from "../button";
 import { Footer } from "../landing";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 const LoginForm = () => {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { register, handleSubmit } = useForm();
-  const searchParams = useSearchParams();
 
   const onSubmit = async (values: any) => {
     setIsSubmitting(true);
-    await signIn("credentials", {
+    const result = await signIn("credentials", {
       userName: values.userName,
       password: values.password,
-      callbackUrl: `/${values.userName}`,
+      redirect: false,
     });
+    if (result?.ok) {
+      window.location.href = `/${values.userName}`;
+      /*  router.refresh();
+      router.replace(`/${values.userName}`); */
+    }
     setIsSubmitting(false);
   };
 
