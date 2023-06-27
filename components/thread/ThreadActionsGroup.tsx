@@ -10,6 +10,7 @@ import {
   Textarea,
   Spinner,
   Box,
+  useToast,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -42,6 +43,7 @@ const ThreadActionsGroup = ({
   threadId: string;
   comments: Comments[];
 }) => {
+  const toast = useToast();
   const { setModalId } = useModalState();
   const session = useSession();
   const queryClient = useQueryClient();
@@ -57,6 +59,16 @@ const ThreadActionsGroup = ({
     },
     onSuccess: async (newComment: any) => {
       await queryClient.fetchQuery(["thread", threadId]);
+      toast({
+        title: "Comment successfully posted.",
+        status: "success",
+        duration: 4000,
+        isClosable: false,
+        variant: "left-accent",
+        position: "bottom",
+        size: "xs",
+        colorScheme: "brand",
+      });
       return queryClient.setQueryData(
         ["comments", threadId],
         (prev: any) => ({

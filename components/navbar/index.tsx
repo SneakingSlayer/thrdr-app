@@ -69,6 +69,12 @@ const Navbar = ({ session }: { session: Session | null }) => {
                     _active={{ bg: "transparent" }}
                   >
                     <HStack>
+                      <Box textAlign={"right"}>
+                        <Text>{session?.user?.name}</Text>
+                        <Text color={"gray.500"}>
+                          @{session?.user?.userName}
+                        </Text>
+                      </Box>
                       <Avatar
                         name={session?.user?.name}
                         src={getImageUri(session?.user?.userName ?? "")}
@@ -77,12 +83,6 @@ const Navbar = ({ session }: { session: Session | null }) => {
                         size={"sm"}
                         bg={"brand.200"}
                       />
-                      <Box textAlign={"left"}>
-                        <Text>{session?.user?.name}</Text>
-                        <Text color={"gray.500"}>
-                          @{session?.user?.userName}
-                        </Text>
-                      </Box>
                     </HStack>
                   </MenuButton>
                   <MenuList

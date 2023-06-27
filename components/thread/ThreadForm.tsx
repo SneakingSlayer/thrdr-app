@@ -13,6 +13,7 @@ import {
   Text,
   Textarea,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 
 import { SubmitButton } from "../button";
@@ -43,6 +44,7 @@ interface ThreadMutation {
 }
 
 const ThreadForm = ({ name, userId }: ThreadFormProps) => {
+  const toast = useToast();
   const queryClient = useQueryClient();
   const session = useSession();
   const { setModalId } = useModalState();
@@ -51,6 +53,16 @@ const ThreadForm = ({ name, userId }: ThreadFormProps) => {
       createThread(newThread, userId, session?.data?.user?.id ?? ""),
     onSuccess: async (newPost) => {
       await queryClient.fetchQuery(["profile", userId]);
+      toast({
+        title: "Thread successfully posted.",
+        status: "success",
+        duration: 4000,
+        isClosable: false,
+        variant: "left-accent",
+        position: "bottom",
+        size: "xs",
+        colorScheme: "brand",
+      });
       return queryClient.setQueryData(
         ["threads", userId],
         (prev: InfiniteThreadData | undefined) => {
