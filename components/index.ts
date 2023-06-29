@@ -9,3 +9,4 @@ export * from "./layouts";
 export * from "./modals";
 export * from "./landing";
 export * from "./errors";
+export * from "./comments";

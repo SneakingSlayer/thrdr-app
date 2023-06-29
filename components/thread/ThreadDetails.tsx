@@ -6,7 +6,7 @@ import { Avatar, Box, HStack, Text } from "@chakra-ui/react";
 import type { Thread } from "@/types";
 import moment from "moment";
 
-import { CommentsSection, ThreadActionsGroup } from "@/components";
+import { CommentsSection, ThreadActions } from "@/components";
 
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -53,7 +53,7 @@ const ThreadDetails = (props: { data: Thread }) => {
         </Box>
       </HStack>
       <Text mb={5}>{data?.data?.description}</Text>
-      <ThreadActionsGroup
+      <ThreadActions
         threadId={data?.data?.id}
         userId={session?.data?.user?.id ?? ""}
         likes={data?.data?.likes}

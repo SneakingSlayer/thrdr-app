@@ -32,7 +32,7 @@ import {
   useModalState,
 } from "@/hooks";
 
-const ThreadActionsGroup = ({
+const ThreadActions = ({
   likes,
   userId,
   threadId,
@@ -149,4 +149,4 @@ const ThreadActionsGroup = ({
   );
 };
 
-export default ThreadActionsGroup;
+export default ThreadActions;
