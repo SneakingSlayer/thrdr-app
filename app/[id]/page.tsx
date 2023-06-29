@@ -1,5 +1,5 @@
 import { ProfileDetails, ThreadForm, ThreadsSection } from "@/components";
-import { getUserById } from "@/queries";
+import { getUserById } from "@/api";
 import { redirect } from "next/navigation";
 
 export default async function Home(params: { params: { id: string } }) {

@@ -8,22 +8,15 @@ import {
   Flex,
   VStack,
   HStack,
-  Icon,
   IconButton,
-  ButtonGroup,
-  Button,
   Tooltip,
-  Box,
-  InputGroup,
   Input,
-  InputRightElement,
 } from "@chakra-ui/react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getUserById } from "@/queries";
+import { useQuery } from "@tanstack/react-query";
+import { getUserById } from "@/api";
 import { User } from "@/types";
 import { useGetProfilePic } from "@/hooks";
 import { BsLink45Deg } from "react-icons/bs";
-import { usePathname } from "next/navigation";
 
 const ProfileDetails = (props: User) => {
   const { data } = useQuery({

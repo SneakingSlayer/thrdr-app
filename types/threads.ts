@@ -27,3 +27,14 @@ export interface InfiniteThreadData {
   pageParams: string[] | undefined[];
   pages: InfiniteThreadItems[];
 }
+
+export interface ThreadCreate {
+  description: string;
+  createdById: string;
+}
+
+export interface ThreadLike {
+  threadId?: string;
+  userId?: string;
+  likeId?: string;
+}

@@ -1,15 +1,6 @@
-import { THREADS_API, LIKES_API } from "@/constants";
+import { THREADS_API, LIKES_API, USERS_API } from "@/constants";
 
-export interface ThreadCreate {
-  description: string;
-  createdById: string;
-}
-
-export interface ThreadLike {
-  threadId?: string;
-  userId?: string;
-  likeId?: string;
-}
+import type { ThreadCreate, ThreadLike } from "@/types";
 
 export const createThread = async (
   newThread: ThreadCreate,
@@ -48,11 +39,15 @@ export const deleteLike = async (like: ThreadLike) => {
   return result;
 };
 
-export const getThreadById = async (threadId: string) => {
-  const res = await fetch(`${THREADS_API}/${threadId}`, {
-    method: "GET",
-    cache: "no-cache",
-  });
-  const result = await res.json();
-  return result;
+export const getUserById = async (params: string) => {
+  try {
+    const res = await fetch(`${USERS_API}/${params}`, {
+      method: "GET",
+      cache: "no-cache",
+    });
+    const result = await res.json();
+    return result?.data;
+  } catch (error) {
+    return null;
+  }
 };

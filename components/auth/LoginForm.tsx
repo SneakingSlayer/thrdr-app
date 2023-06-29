@@ -4,7 +4,6 @@ import React from "react";
 
 import {
   Box,
-  Button,
   Flex,
   FormControl,
   FormLabel,
@@ -16,17 +15,14 @@ import {
   Alert,
   AlertDescription,
   AlertIcon,
-  AlertTitle,
 } from "@chakra-ui/react";
 
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
 import { SubmitButton } from "../button";
 import { Footer } from "../landing";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
 const LoginForm = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -49,8 +45,6 @@ const LoginForm = () => {
 
     if (!result?.error) {
       window.location.href = `/${values.userName}`;
-      /*  router.refresh();
-      router.replace(`/${values.userName}`); */
     } else {
       setError("userName", { type: "custom", message: "Incorrect username." });
       setError("password", { type: "custom", message: "Incorrect password." });

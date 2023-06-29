@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 
 import {
   Box,
-  Button,
   Flex,
   FormControl,
   FormErrorMessage,
   HStack,
-  Switch,
   Text,
   Textarea,
   VStack,
@@ -19,18 +17,13 @@ import {
 import { SubmitButton } from "../button";
 
 import { useForm } from "react-hook-form";
-import { THREADS_API } from "@/constants";
 
 import { useSession } from "next-auth/react";
 
-import {
-  useInfiniteQuery,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { InfiniteThreadData, Thread } from "@/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { InfiniteThreadData } from "@/types";
 
-import { createThread } from "@/queries";
+import { createThread } from "@/api";
 import { useModalState } from "@/hooks";
 
 interface ThreadFormProps {

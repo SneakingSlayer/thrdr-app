@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { THREADS_API } from "@/constants";
 import { Box, Flex, Spinner, Stack } from "@chakra-ui/react";
 import CommentCard from "./CommentCard";
 import type { Comments } from "@/types";

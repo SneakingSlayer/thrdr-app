@@ -2,14 +2,19 @@ import React from "react";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { type ThreadLike, deleteLike, createLike } from "@/queries";
-
-import type { InfiniteThreadData, Thread, InfiniteThreadItems } from "@/types";
-
 import { SetDataOptions } from "@tanstack/react-query";
 
 import { useModalState } from "@/hooks";
 import { useSession } from "next-auth/react";
+
+import type {
+  InfiniteThreadData,
+  Thread,
+  InfiniteThreadItems,
+  ThreadLike,
+} from "@/types";
+
+import { deleteLike, createLike } from "@/api";
 
 const useLikeThreadMutation = ({
   hasLiked,
@@ -38,8 +43,6 @@ const useLikeThreadMutation = ({
       await queryClient.cancelQueries(["threads", createdFor]);
       const prevData: InfiniteThreadData | undefined =
         await queryClient.getQueryData(["threads", createdFor]);
-      console.log(prevData);
-      console.log(newLike);
       const updatedPages = prevData?.pages?.map((page) => ({
         ...page,
         data: page.data.map((thread: Thread) => {
