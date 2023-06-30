@@ -8,6 +8,12 @@ import { BsFacebook, BsInstagram, BsTwitter, BsGithub } from "react-icons/bs";
 
 import moment from "moment";
 import Link from "next/link";
+import {
+  FACEBOOK_URL,
+  GITHUB_URL,
+  INSTAGRAM_URL,
+  TWITTER_URL,
+} from "@/constants";
 
 const Footer = () => {
   return (
@@ -18,28 +24,28 @@ const Footer = () => {
         alignItems={"center"}
       >
         <HStack spacing={4} mb={3}>
-          <Link href="">
+          <Link target="_blank" rel="noopener noreferrer" href={FACEBOOK_URL}>
             <Icon
               color={"gray.500"}
               _hover={{ color: "Highlight" }}
               as={BsFacebook}
             />
           </Link>
-          <Link href="">
+          <Link target="_blank" rel="noopener noreferrer" href={INSTAGRAM_URL}>
             <Icon
               color={"gray.500"}
               _hover={{ color: "Highlight" }}
               as={BsInstagram}
             />
           </Link>
-          <Link href="">
+          <Link target="_blank" rel="noopener noreferrer" href={TWITTER_URL}>
             <Icon
               color={"gray.500"}
               _hover={{ color: "Highlight" }}
               as={BsTwitter}
             />
           </Link>
-          <Link href="">
+          <Link target="_blank" rel="noopener noreferrer" href={GITHUB_URL}>
             <Icon
               color={"gray.500"}
               _hover={{ color: "Highlight" }}
