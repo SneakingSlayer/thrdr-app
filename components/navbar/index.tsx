@@ -21,10 +21,10 @@ import {
 import { signIn, signOut } from "next-auth/react";
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { Session } from "next-auth";
 
 import { useGetProfilePic } from "@/hooks";
+import Link from "next/link";
 
 const Navbar = ({ session }: { session: Session | null }) => {
   const router = useRouter();
@@ -98,23 +98,27 @@ const Navbar = ({ session }: { session: Session | null }) => {
                 </Menu>
               ) : (
                 <>
-                  <Button
-                    colorScheme="white"
-                    size={"xs"}
-                    variant={"outline"}
-                    onClick={() => signIn()}
-                  >
-                    Login
-                  </Button>
-                  <Button
-                    bg={"brand.600"}
-                    color={"white"}
-                    size={"xs"}
-                    variant={"solid"}
-                    onClick={() => router.push("/signup")}
-                  >
-                    Sign up
-                  </Button>
+                  <Link href={"/signin"}>
+                    <Button
+                      colorScheme="white"
+                      size={"xs"}
+                      variant={"outline"}
+                      // onClick={() => signIn()}
+                    >
+                      Login
+                    </Button>
+                  </Link>
+                  <Link href={"/signup"}>
+                    <Button
+                      bg={"brand.600"}
+                      color={"white"}
+                      size={"xs"}
+                      variant={"solid"}
+                      // onClick={() => router.push("/signup")}
+                    >
+                      Sign up
+                    </Button>
+                  </Link>
                 </>
               )}
             </ButtonGroup>
