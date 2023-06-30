@@ -5,20 +5,19 @@ import { authOptions } from "@/lib/auth";
 
 export const metadata = {};
 
-const ProfileLayout = async ({
+const MeLayout = async ({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { id: string };
+  params: { userId: string };
 }) => {
   const session = await getServerSession(authOptions);
   return (
     <>
-      <title>{`${params.id}`}</title>
+      <title>{`${params.userId}`}</title>
       {children}
     </>
   );
 };
-
-export default ProfileLayout;
+export default MeLayout;
