@@ -51,3 +51,20 @@ export const getUserById = async (params: string) => {
     return null;
   }
 };
+
+export const createComment = async ({
+  pageParam = "",
+  threadId,
+}: {
+  pageParam: string;
+  threadId: string;
+}) => {
+  const res = await fetch(
+    `${THREADS_API}/${threadId}/comments?cursor=${pageParam}&limit=10`,
+    {
+      method: "GET",
+    }
+  );
+  const result = await res.json();
+  return result;
+};

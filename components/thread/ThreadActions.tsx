@@ -16,13 +16,10 @@ import {
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { THREADS_API } from "@/constants";
-import type { Comments, Likes } from "@/types";
 
 import { SubmitButton } from "@/components";
 
@@ -30,8 +27,10 @@ import {
   useGetProfilePic,
   useLikeThreadMutation,
   useModalState,
+  useCommentThreadMutation,
 } from "@/hooks";
 
+import type { Comments, Likes } from "@/types";
 const ThreadActions = ({
   likes,
   userId,
@@ -43,43 +42,11 @@ const ThreadActions = ({
   threadId: string;
   comments: Comments[];
 }) => {
-  const toast = useToast();
   const { setModalId } = useModalState();
   const session = useSession();
-  const queryClient = useQueryClient();
   const hasLiked = likes?.map((like) => like.userId)?.includes(userId);
-  const { mutate, isLoading } = useMutation({
-    mutationFn: async (values) => {
-      const res = await fetch(`${THREADS_API}/${threadId}/comments`, {
-        method: "POST",
-        body: JSON.stringify(values),
-      });
-      const result = await res.json();
-      return result;
-    },
-    onSuccess: async (newComment: any) => {
-      await queryClient.fetchQuery(["thread", threadId]);
-      toast({
-        title: "Comment successfully posted.",
-        status: "success",
-        duration: 4000,
-        isClosable: false,
-        variant: "left-accent",
-        position: "bottom",
-        size: "xs",
-        colorScheme: "brand",
-      });
-      return queryClient.setQueryData(
-        ["comments", threadId],
-        (prev: any) => ({
-          ...prev,
-          pages: [{ data: [newComment.data], nextCursor: "" }, ...prev.pages],
-        }),
-        newComment
-      );
-    },
-  });
 
+  const { mutate, isLoading } = useCommentThreadMutation(threadId);
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (values: any) => {

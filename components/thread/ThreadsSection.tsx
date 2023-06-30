@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 
 import {
   Box,
   Flex,
-  Icon,
   Spinner,
   Tab,
   TabIndicator,
