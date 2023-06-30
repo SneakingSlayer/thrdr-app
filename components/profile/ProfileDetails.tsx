@@ -28,7 +28,10 @@ const ProfileDetails = (props: User) => {
 
   const { getImageUri } = useGetProfilePic({});
 
-  const profileUrl = `${window.location.origin}${window.location.pathname}`;
+  const profileUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}${window.location.pathname}`
+      : "";
 
   return (
     <Flex mb={5} w={"100%"} justifyContent={"center"} alignItems={"center"}>

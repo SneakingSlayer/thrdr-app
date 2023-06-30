@@ -44,7 +44,8 @@ const LoginForm = () => {
     });
 
     if (!result?.error) {
-      window.location.href = `/${values.userName}`;
+      if (typeof window !== "undefined")
+        window.location.href = `/${values.userName}`;
     } else {
       setError("userName", { type: "custom", message: "Incorrect username." });
       setError("password", { type: "custom", message: "Incorrect password." });

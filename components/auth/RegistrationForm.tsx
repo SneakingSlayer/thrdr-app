@@ -44,6 +44,7 @@ const RegistrationForm = () => {
         },
       });
       if (!result.ok) throw await result.json();
+      if (typeof window !== "undefined") window.location.href = `/signin`;
     } catch (error: any) {
       setError(error?.data?.field, {
         type: "custom",
