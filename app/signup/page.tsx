@@ -1,6 +1,6 @@
 import React from "react";
 
-import { RegistrationForm, Container } from "@/components";
+import { RegistrationForm } from "@/components";
 
 const SignUp = () => {
   return <RegistrationForm />;
