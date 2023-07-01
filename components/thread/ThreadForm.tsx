@@ -23,7 +23,7 @@ import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { InfiniteThreadData } from "@/types";
 
-import { createThread } from "@/api";
+import { createThread } from "@/apiQueries";
 import { useModalState } from "@/hooks";
 
 interface ThreadFormProps {

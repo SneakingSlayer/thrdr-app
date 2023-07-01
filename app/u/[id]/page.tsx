@@ -5,7 +5,7 @@ import {
   ThreadForm,
   ThreadsSection,
 } from "@/components";
-import { getUserById } from "@/api";
+import { getUserById } from "@/apiQueries";
 import { redirect } from "next/navigation";
 export default async function Home({ params }: { params: { id: string } }) {
   const user = await getUserById(params.id);

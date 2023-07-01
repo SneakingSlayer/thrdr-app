@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { THREADS_API } from "@/constants";
 import { Thread } from "@/types";
-import { getInfiniteThreads } from "@/api";
+import { getInfiniteThreads } from "@/apiQueries";
 
 interface Threads {
   data: Thread[];
