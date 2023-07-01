@@ -6,10 +6,10 @@ import {
   ThreadsSection,
 } from "@/components";
 import { getUserById } from "@/api";
+import { redirect } from "next/navigation";
 export default async function Home({ params }: { params: { id: string } }) {
-  if (!params.id) return <LandingPage />;
   const user = await getUserById(params.id);
-  if (!user) return <ErrorPage />;
+  if (!user) return redirect("/404");
   return (
     <>
       <ProfileDetails {...user} />

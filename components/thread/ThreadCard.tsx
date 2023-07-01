@@ -51,7 +51,7 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
             size={"sm"}
           />
           <Box>
-            <Link href={`/${thread.createdBy.userName}`}>
+            <Link href={`/u/${thread.createdBy.userName}`}>
               <Text
                 _hover={{ textDecoration: "underline" }}
                 fontSize={"xs"}
