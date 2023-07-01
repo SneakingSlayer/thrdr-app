@@ -37,15 +37,19 @@ const ThreadDetails = (props: { data: Thread }) => {
         />
         <Box>
           <Text fontSize={"xs"} color={"Highlight"} fontWeight={"700"}>
-            <Link href={`/u/${data?.data?.createdBy?.userName}`}>
-              {data?.data?.createdBy?.userName}
-            </Link>{" "}
+            <Text as={"span"} _hover={{ textDecoration: "underline" }}>
+              <Link href={`/u/${data?.data?.createdBy?.userName}`}>
+                {data?.data?.createdBy?.userName}
+              </Link>
+            </Text>{" "}
             <Text as="span" color={"gray.500"} fontWeight={"normal"}>
               to
             </Text>{" "}
-            <Link href={`/u/${data?.data?.createdFor?.userName}`}>
-              {data?.data?.createdFor?.userName}
-            </Link>
+            <Text as={"span"} _hover={{ textDecoration: "underline" }}>
+              <Link href={`/u/${data?.data?.createdFor?.userName}`}>
+                {data?.data?.createdFor?.userName}
+              </Link>
+            </Text>
           </Text>
           <Text color={"gray.500"} fontSize={"xs"}>
             {moment(data?.data?.createdAt).fromNow()}
