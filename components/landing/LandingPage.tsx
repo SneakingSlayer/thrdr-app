@@ -10,7 +10,7 @@ import {
   SectionContainer,
 } from "@/components";
 
-const Home = () => {
+const LandingPage = () => {
   return (
     <>
       <SectionContainer>
@@ -33,4 +33,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingPage;
