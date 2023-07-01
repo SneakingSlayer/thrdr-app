@@ -3,7 +3,7 @@ import React from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { THREADS_API } from "@/constants";
-import { createComment } from "@/api";
+import { createComment } from "@/apiQueries";
 
 const useGetInfiniteComments = ({ threadId }: { threadId: string }) => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =

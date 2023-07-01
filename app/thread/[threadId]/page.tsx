@@ -2,7 +2,7 @@ import React from "react";
 
 import { ThreadDetails } from "@/components";
 
-import { getThreadById } from "@/api";
+import { getThreadById } from "@/apiQueries";
 
 const Thread = async (params: { params: { threadId: string } }) => {
   const result = await getThreadById(params.params.threadId);

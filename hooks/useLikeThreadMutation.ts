@@ -14,7 +14,7 @@ import type {
   ThreadLike,
 } from "@/types";
 
-import { deleteLike, createLike } from "@/api";
+import { deleteLike, createLike } from "@/apiQueries";
 
 const useLikeThreadMutation = ({
   hasLiked,

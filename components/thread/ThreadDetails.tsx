@@ -10,7 +10,7 @@ import { CommentsSection, ThreadActions } from "@/components";
 
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import { getThreadById } from "@/api";
+import { getThreadById } from "@/apiQueries";
 
 import Link from "next/link";
 import { useGetProfilePic } from "@/hooks";

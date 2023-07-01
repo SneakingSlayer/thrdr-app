@@ -13,7 +13,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { getUserById } from "@/api";
+import { getUserById } from "@/apiQueries";
 import { User } from "@/types";
 import { useGetProfilePic } from "@/hooks";
 import { BsLink45Deg } from "react-icons/bs";
