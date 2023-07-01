@@ -2,7 +2,7 @@
 
 A basic thread app inspired by Twitter, Reddit, & Curious Cat. Features are still on the works.
 
-![thrdr](https://ibb.co/qRzhJDd "thrdr")
+![thrdr](https://i.ibb.co/p3gNh1x/mockup.png "thrdr")
 
 ## Getting Started
 
