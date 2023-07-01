@@ -1,5 +1,3 @@
-"use client";
-
 // Google Fonts
 import { Inter } from "next/font/google";
 
