@@ -8,7 +8,7 @@ import { notFound } from "next/navigation";
 
 const Thread = async (params: { params: { threadId: string } }) => {
   const result = await getThreadById(params.params.threadId);
-  if (!result) notFound();
+  if (!result?.data) notFound();
   return <ThreadDetails {...result} />;
 };
 

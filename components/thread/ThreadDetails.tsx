@@ -37,7 +37,7 @@ const ThreadDetails = (props: { data: Thread }) => {
         />
         <Box>
           <Text fontSize={"xs"} color={"Highlight"} fontWeight={"700"}>
-            <Link href={`/${data?.data?.createdBy?.userName}`}>
+            <Link href={`/u/${data?.data?.createdBy?.userName}`}>
               {data?.data?.createdBy?.userName}
             </Link>{" "}
             <Text as="span" color={"gray.500"} fontWeight={"normal"}>
