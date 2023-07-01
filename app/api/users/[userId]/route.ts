@@ -23,7 +23,7 @@ export const GET = async (
     });
     return NextResponse.json({ data: getUser });
   } catch (error) {
-    return error;
+    return NextResponse.json({ data: error });
   }
 };
 
@@ -35,7 +35,6 @@ export const PUT = async (
     const token = await verifyToken(req);
     if (!token.isValid) throw { ...token };
     const reqBody = await req.json();
-    console.log(token);
     if (token.token?.id !== params.userId)
       throw { ...token, message: "Accounts does not match!" };
     const salt = await bcrypt.genSalt(10);
