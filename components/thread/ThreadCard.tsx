@@ -92,7 +92,7 @@ const ThreadCard = ({ thread, userId }: { thread: Thread; userId: string }) => {
             >
               {thread._count.likes} Likes
             </Button>
-            <Link href={`/thread/${thread.id}`}>
+            <Link href={`/thread/${thread.id}`} prefetch={false}>
               <Button leftIcon={<BiComment />} size={"xs"}>
                 {thread._count.comments} Replies
               </Button>

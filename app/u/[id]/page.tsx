@@ -6,10 +6,10 @@ import {
   ThreadsSection,
 } from "@/components";
 import { getUserById } from "@/apiQueries";
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 export default async function Home({ params }: { params: { id: string } }) {
   const user = await getUserById(params.id);
-  if (!user) redirect("/not-found");
+  if (!user) notFound();
   return (
     <>
       <ProfileDetails {...user} />
