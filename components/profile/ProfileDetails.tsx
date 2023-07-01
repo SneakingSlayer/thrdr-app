@@ -33,12 +33,6 @@ const ProfileDetails = (props: User) => {
       ? `${window.location.origin}${window.location.pathname}`
       : "";
 
-  React.useEffect(() => {
-    (async () => {
-      const res = await getUserById("thelancethe");
-      console.log(res);
-    })();
-  }, []);
   return (
     <Flex mb={5} w={"100%"} justifyContent={"center"} alignItems={"center"}>
       <VStack spacing={3}>

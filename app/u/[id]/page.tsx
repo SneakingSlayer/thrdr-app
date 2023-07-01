@@ -9,7 +9,7 @@ import { getUserById } from "@/apiQueries";
 import { redirect } from "next/navigation";
 export default async function Home({ params }: { params: { id: string } }) {
   const user = await getUserById(params.id);
-  // if (!user) return redirect("/404");
+  if (!user) redirect("/not-found");
   return (
     <>
       <ProfileDetails {...user} />
