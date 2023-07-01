@@ -47,7 +47,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
             alignItems={"center"}
             justifyContent={"space-between"}
           >
-            <Link href={session ? `/${session?.user?.userName}` : "/"}>
+            <Link href={session ? `/u/${session?.user?.userName}` : "/"}>
               <Image
                 w={"35px"}
                 h={"100%"}

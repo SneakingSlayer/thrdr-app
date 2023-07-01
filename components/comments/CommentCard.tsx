@@ -19,7 +19,7 @@ const CommentCard = ({ comment }: { comment: Comments }) => {
         />
         <Box>
           <Text color={"Highlight"} fontWeight={"bold"} fontSize={"xs"}>
-            <Link href={`/${comment.createdBy.userName}`}>
+            <Link href={`/u/${comment.createdBy.userName}`}>
               {comment.createdBy.userName}
             </Link>{" "}
             <Text

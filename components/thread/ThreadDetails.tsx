@@ -43,7 +43,7 @@ const ThreadDetails = (props: { data: Thread }) => {
             <Text as="span" color={"gray.500"} fontWeight={"normal"}>
               to
             </Text>{" "}
-            <Link href={`/${data?.data?.createdFor?.userName}`}>
+            <Link href={`/u/${data?.data?.createdFor?.userName}`}>
               {data?.data?.createdFor?.userName}
             </Link>
           </Text>
