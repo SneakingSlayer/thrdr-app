@@ -45,7 +45,7 @@ const About = () => {
   ];
 
   return (
-    <VStack>
+    <VStack id="about">
       <Box mb={3}>
         <Text mb={1} as={"h2"} fontSize={"lg"} fontWeight={"bold"}>
           What is thrdr?

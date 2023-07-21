@@ -7,6 +7,8 @@ import { CgArrowLongRight } from "react-icons/cg";
 
 import { SectionContainer } from "@/components";
 
+import Link from "next/link";
+
 const Banner = () => {
   return (
     <Box
@@ -49,9 +51,16 @@ const Banner = () => {
             our community. We have over 500 users worldwide!
           </Text>
         </Box>
-        <Button size={"xs"} rightIcon={<CgArrowLongRight />} variant={"solid"}>
-          Get started
-        </Button>
+        <Link href={"/signin"}>
+          <Button
+            size={"xs"}
+            rightIcon={<CgArrowLongRight />}
+            variant={"solid"}
+            zIndex={3}
+          >
+            Get started
+          </Button>
+        </Link>
       </Box>
     </Box>
   );
