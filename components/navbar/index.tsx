@@ -47,7 +47,7 @@ const Navbar = ({ session }: { session: Session | null }) => {
       backdropFilter={"auto"}
       backdropBlur={"8px"}
     >
-      <SearchModal />
+      {/* <SearchModal /> */}
       <Container maxW={"lg"}>
         <Box>
           <Flex
@@ -67,13 +67,13 @@ const Navbar = ({ session }: { session: Session | null }) => {
               {session ? (
                 <Menu placement="bottom-end">
                   <HStack>
-                    <IconButton
+                    {/*  <IconButton
                       onClick={() => setModalId("SEARCH_MODAL")}
                       borderRadius={"full"}
                       size={"sm"}
                       icon={<RiSearch2Line />}
                       aria-label={"search-btn"}
-                    />
+                    /> */}
                     <MenuButton
                       as={Button}
                       size={"xs"}
@@ -85,12 +85,12 @@ const Navbar = ({ session }: { session: Session | null }) => {
                       _active={{ bg: "transparent" }}
                     >
                       <HStack>
-                        {/* <Box textAlign={"right"}>
-                        <Text>{session?.user?.name}</Text>
-                        <Text color={"gray.500"}>
-                          @{session?.user?.userName}
-                        </Text>
-                      </Box> */}
+                        <Box textAlign={"right"}>
+                          <Text>{session?.user?.name}</Text>
+                          <Text color={"gray.500"}>
+                            @{session?.user?.userName}
+                          </Text>
+                        </Box>
                         <Avatar
                           name={session?.user?.name}
                           src={getImageUri(session?.user?.userName ?? "")}
