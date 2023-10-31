@@ -23,6 +23,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "^13.4.7",
     "framer-motion": "^10.12.16",
+    "is-ua-webview": "^1.1.2",
     "minidenticons": "^4.2.0",
     "moment": "^2.29.4",
     "next": "^13.4.7",
