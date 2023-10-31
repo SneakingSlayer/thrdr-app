@@ -5,6 +5,8 @@ import React from "react";
 import { Box } from "@chakra-ui/react";
 
 const SectionContainer = ({ children }: { children: React.ReactNode }) => {
+  const [isWebview, setIsWebview] = React.useState(false);
+
   var standalone = (window.navigator as any).standalone,
     userAgent = window.navigator.userAgent.toLowerCase(),
     safari = /safari/.test(userAgent),
@@ -17,17 +19,24 @@ const SectionContainer = ({ children }: { children: React.ReactNode }) => {
     } else if (!standalone && !safari) {
       // iOS webview
       console.log("WEBVIEW: true");
+      setIsWebview(true);
     }
   } else {
     if (userAgent.includes("wv")) {
       // Android webview
       console.log("WEBVIEW: true");
+      setIsWebview(true);
     } else {
       // Chrome
       console.log("WEBVIEW: false");
     }
   }
-  return <Box mb={12}>{children}</Box>;
+  return (
+    <Box mb={12}>
+      {isWebview && <h1 style={{ color: "white" }}>WEBVIEW</h1>}
+      {children}
+    </Box>
+  );
 };
 
 export default SectionContainer;
